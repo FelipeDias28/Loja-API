@@ -24,13 +24,12 @@ namespace Alura.Loja.Testes.ConsoleApp
             GravarUsandoEntity();
             RecuperarProdutos();
 
-            using (LojaContext context = new LojaContext())
+            using (var context = new ProdutoDAOEntity())
             {
-                Produto produto = context.Produtos.First();
+                Produto produto = context.Produtos().First();
                 produto.Nome = "Cassino Royale";
-                
-                context.Produtos.Update(produto);
-                context.SaveChanges();
+
+                context.Atualizar(produto);
             }
 
             RecuperarProdutos();
@@ -39,23 +38,22 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         private static void ExcluirProduto()
         {
-            using(LojaContext context = new LojaContext())
+            using(var context = new ProdutoDAOEntity())
             {
-                IList<Produto> produtos = context.Produtos.ToList();
+                IList<Produto> produtos = context.Produtos();
 
                 foreach(var item in produtos)
                 {
-                    context.Produtos.Remove(item);
+                    context.Remover(item);
                 }
-                context.SaveChanges();
             }
         }
 
         private static void RecuperarProdutos()
         {
-            using(var context = new LojaContext())
+            using(var context = new ProdutoDAOEntity())
             {
-                IList<Produto> produtos = context.Produtos.ToList();
+                IList<Produto> produtos = context.Produtos();
                 Console.WriteLine("Foram encontrados {0} produto(s)", produtos.Count);
 
                 foreach(var item in produtos)
@@ -72,10 +70,9 @@ namespace Alura.Loja.Testes.ConsoleApp
             p.Categoria = "Livros";
             p.Preco = 19.89;
 
-            using (var context = new LojaContext())
+            using (var context = new ProdutoDAOEntity())
             {
-                context.Produtos.Add(p);
-                context.SaveChanges();
+                context.Adicionar(p);
             }
         }
 
