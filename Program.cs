@@ -11,8 +11,21 @@ namespace Alura.Loja.Testes.ConsoleApp
         static void Main(string[] args)
         {
             //GravarUsandoAdoNet();
-            GravarUsandoEntity();
+            //GravarUsandoEntity();
+            RecuperarProdutos();
 
+        }
+
+        private static void RecuperarProdutos()
+        {
+            using(var context = new LojaContext())
+            {
+                IList<Produto> produtos = context.Produtos.ToList();
+                foreach(var item in produtos)
+                {
+                    Console.WriteLine(item.Nome);
+                }
+            }
         }
 
         private static void GravarUsandoEntity()
