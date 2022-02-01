@@ -5,6 +5,15 @@
         public int Id { get; internal set; }
         public string Nome { get; internal set; }
         public string Categoria { get; internal set; }
-        public double Preco { get; internal set; }
+        public double PrecoUnitario { get; internal set; }
+        public string Unidade { get; set; }
+
+
+
+        // a forma que apresenta na tela
+        public override string ToString()
+        {
+            return $"Produto {this.Id}, {this.Nome}, {this.Categoria}, {this.PrecoUnitario}";
+        }
     }
 }
