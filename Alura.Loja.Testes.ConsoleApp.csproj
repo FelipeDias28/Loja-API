@@ -247,6 +247,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compra.cs" />
     <Compile Include="IProdutoDAO.cs" />
     <Compile Include="LojaContext.cs" />
     <Compile Include="Migrations\20220201093932_Unidade.cs" />
@@ -257,10 +258,20 @@
     <Compile Include="Migrations\20220201094105_Inicial.designer.cs">
       <DependentUpon>20220201094105_Inicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20220203085547_Compra.cs" />
+    <Compile Include="Migrations\20220203085547_Compra.designer.cs">
+      <DependentUpon>20220203085547_Compra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20220207101120_Promocao.cs" />
+    <Compile Include="Migrations\20220207101120_Promocao.designer.cs">
+      <DependentUpon>20220207101120_Promocao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\LojaContextModelSnapshot.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="ProdutoDAOEntity.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Promocao.cs" />
+    <Compile Include="PromocaoProduto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
