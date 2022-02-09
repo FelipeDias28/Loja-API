@@ -13,27 +13,47 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //Produto paoFrances = new Produto();
-            //paoFrances.Nome = "Pão Francês";
-            //paoFrances.PrecoUnitario = 0.40;
-            //paoFrances.Unidade = "Unidade";
-            //paoFrances.Categoria = "Padaria";
+            var fulano = new Cliente();
+            fulano.Nome = "Fulano de tal";
+            fulano.EnderecoDeEntrega = new Endereco()
+            {
+                Numero = 12,
+                Logradouro = "Rua dos inválidos",
+                Complemento = "sobrado",
+                Bairro = "Centro",
+                Cidade = "Cidade"
+            };
 
-            //Compra compra = new Compra();
-            //compra.Quantidade = 6;
-            //compra.Produto = paoFrances;
-            //compra.Preco = paoFrances.PrecoUnitario * compra.Quantidade;
+            using (var context = new LojaContext())
+            {
+                context.Clientes.Add(fulano);
+                context.SaveChanges();
+            }
+        }
+
+        private static void MuitoParaMuitos()
+        {
+            Produto p1 = new Produto() { Nome = "Suco de laranja", Categoria = "Bebidas", PrecoUnitario = 8.79, Unidade = "Litros" };
+            Produto p2 = new Produto() { Nome = "Café", Categoria = "Bebidas", PrecoUnitario = 12.45, Unidade = "Gramas" }; ;
+            Produto p3 = new Produto() { Nome = "Macarrão", Categoria = "Alimentos", PrecoUnitario = 4.23, Unidade = "Gramas" }; ;
 
             Promocao promocaoDePascoa = new Promocao();
             promocaoDePascoa.Descricao = "Pascoa Feliz";
             promocaoDePascoa.DataDeInicio = DateTime.Now;
             promocaoDePascoa.DataDeTermino = DateTime.Now.AddMonths(3);
 
+            promocaoDePascoa.IncluirProduto(p1);
+            promocaoDePascoa.IncluirProduto(p2);
+            promocaoDePascoa.IncluirProduto(p3);
+
 
             using (LojaContext context = new LojaContext())
             {
-                //    context.Compras.Add(compra);
-                //    context.SaveChanges();
+                //context.Promocoes.Add(promocaoDePascoa);
+
+                Promocao promocao = context.Promocoes.Find(1);
+                context.Promocoes.Remove(promocao);
+                context.SaveChanges();
             }
         }
     }
